@@ -5,6 +5,7 @@
 #ifndef MOS_TEST_TOPIC_SUBS_H
 #define MOS_TEST_TOPIC_SUBS_H
 
+#include <condition_variable>
 #include <mutex>
 #include <vector>
 
@@ -12,9 +13,12 @@
 
 namespace mos {
     namespace internal {
+        template<typename T, bool overwrite, ring_mode ring>
         struct topic_sub {
             std::mutex mtx;
-            std::vector<sub_node> queues;
+            int pub_nid{-1};
+            std::condition_variable* cv{nullptr};
+            std::vector<sub_node<T, overwrite, ring>> queues;
         };
     }
 };

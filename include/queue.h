@@ -50,7 +50,6 @@ namespace mos {
             template<bool _overwrite = overwrite>
             typename std::enable_if<!_overwrite, bool>::type push(T& t);
 
-            bool push(T&);
             bool empty();
         };
     }

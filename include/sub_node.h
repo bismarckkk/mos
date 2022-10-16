@@ -5,15 +5,15 @@
 #ifndef MOS_TEST_SUB_NODE_H
 #define MOS_TEST_SUB_NODE_H
 
-#include <boost/any.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "queue.h"
 
 namespace mos {
     namespace internal {
+        template<typename T, bool overwrite, ring_mode ring>
         struct sub_node {
-            std::shared_ptr<boost::any> qu;
+            std::shared_ptr<queue<T, overwrite, ring>> qu;
             int sub_nid;
         };
     }
