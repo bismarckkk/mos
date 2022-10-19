@@ -14,7 +14,7 @@ namespace mos {
         template<typename T, bool overwrite, ring_mode ring>
         struct sub_node {
             std::shared_ptr<queue<T, overwrite, ring>> qu;
-            int sub_nid;
+            int sub_nid{-1};
         };
     }
 };

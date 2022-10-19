@@ -22,7 +22,7 @@ namespace mos {
         template<typename T, bool overwrite, ring_mode ring>
         class queue: private boost::lockfree::spsc_queue<T> {
         private:
-            std::mutex mtx{};
+            std::mutex mtx;
             std::atomic<std::condition_variable*> cv{nullptr};
         public:
             void setCV(std::condition_variable* _cv);

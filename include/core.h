@@ -34,6 +34,8 @@ namespace mos {
         template<typename T, bool overwrite, ring_mode ring>
         int topicName2tid(const std::string& topicName);
 
+        int topicName2tid(const std::string& topicName);
+
     public:
         bool newNode(const boost::filesystem::path& libPath, const std::string& name="");
         bool deleteNode(const std::string& name);
@@ -43,12 +45,21 @@ namespace mos {
         template<typename T, bool overwrite, ring_mode ring>
         std::shared_ptr<internal::topic_sub<T, overwrite, ring>>
         newPub(int nid, const std::string& topicName);
+
+        template<typename T, bool overwrite, ring_mode ring>
         bool deletePub(int nid, const std::string& topicName);
+
+        template<typename T, bool overwrite, ring_mode ring>
         bool deletePub(int nid, int tid);
 
         template<typename T, bool overwrite, ring_mode ring>
-        std::shared_ptr<boost::any> newSub(int nid, const std::string&  topicName);
+        internal::sub_node<T, overwrite, ring>
+        newSub(int nid, const std::string& topicName);
+
+        template<typename T, bool overwrite, ring_mode ring>
         bool deleteSub(int nid, const std::string& topicName);
+
+        template<typename T, bool overwrite, ring_mode ring>
         bool deleteSub(int nid, int tid);
     };
 }
